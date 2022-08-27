@@ -8,7 +8,8 @@ export const LayoutContainer = styled.div`
 
   background: ${(props) => props.theme["gray-300"]};
   border-radius: 8px;
+`;
 
-  display: flex;
-  flex-direction: column;
+export const LayoutHeaderContainer = styled.div`
+  margin: 2rem 0 2rem;
 `;
