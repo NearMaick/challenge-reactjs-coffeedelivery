@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const HeaderContainer = styled.div`
   position: fixed;
   top: 0;
-  width: 80vw;
+  width: calc(100vw - 5rem);
 
   padding: 1rem 0;
 
