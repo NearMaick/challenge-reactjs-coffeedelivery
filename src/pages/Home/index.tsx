@@ -1,6 +1,12 @@
 import { Coffee, Package, ShoppingCart, Timer } from "phosphor-react";
 import CoffeeImage from "../../assets/coffeeimage.svg";
-import { ContentContainer, HomeContainer, ImageContainer } from "./styles";
+import {
+  ContentContainer,
+  HomeCoffeeFeaturesContainer,
+  HomeCoffeeFeaturesContent,
+  HomeContainer,
+  ImageContainer,
+} from "./styles";
 
 export function Home() {
   return (
@@ -13,25 +19,27 @@ export function Home() {
             hora
           </h3>
         </ContentContainer>
-        <div>
-          <p>
-            <ShoppingCart />
-            Compra simples e segura
-          </p>
-          <p>
-            <Timer />
-            Entrega rápida e rastreada
-          </p>
-        </div>
-        <div>
-          <p>
-            <Package />
-            Embalagem mantém o café intacto
-          </p>
-          <p>
-            <Coffee />O café chega fresquinho até você
-          </p>
-        </div>
+        <HomeCoffeeFeaturesContainer>
+          <div>
+            <HomeCoffeeFeaturesContent backgroundColor='yellow-600'>
+              <ShoppingCart weight='fill' />
+              Compra simples e segura
+            </HomeCoffeeFeaturesContent>
+            <HomeCoffeeFeaturesContent backgroundColor='yellow-500'>
+              <Timer weight='fill' />
+              Entrega rápida e rastreada
+            </HomeCoffeeFeaturesContent>
+          </div>
+          <div>
+            <HomeCoffeeFeaturesContent backgroundColor='gray-800'>
+              <Package weight='fill' />
+              Embalagem mantém o café intacto
+            </HomeCoffeeFeaturesContent>
+            <HomeCoffeeFeaturesContent backgroundColor='purple-800'>
+              <Coffee weight='fill' />O café chega fresquinho até você
+            </HomeCoffeeFeaturesContent>
+          </div>
+        </HomeCoffeeFeaturesContainer>
       </div>
       <ImageContainer>
         <img src={CoffeeImage} alt='' />
