@@ -1,6 +1,6 @@
 import { Minus, Plus, ShoppingCart } from "phosphor-react";
 import CoffeeImage from "../../../../assets/pageassets/american.svg";
-import { CoffeeContainer } from "./styles";
+import { CoffeeContainer, CoffeeTagsContainer } from "./styles";
 interface CoffeeProps {
   title: string;
   description: string;
@@ -9,18 +9,23 @@ interface CoffeeProps {
 }
 
 export function Coffee({ title, description, tags, price }: CoffeeProps) {
+  const priceFormatted = new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  }).format(price / 100);
+
   return (
     <CoffeeContainer>
       <img src={CoffeeImage} alt='' />
-      <p>
+      <CoffeeTagsContainer>
         {tags.map((tag) => (
-          <span key={tag}>{tag} </span>
+          <span key={tag}>{tag}</span>
         ))}
-      </p>
+      </CoffeeTagsContainer>
       <h3>{title}</h3>
       <p>{description}</p>
       <div>
-        <span>{price}</span>
+        <span>{priceFormatted}</span>
         <div>
           <Plus />
           <span>1</span>
