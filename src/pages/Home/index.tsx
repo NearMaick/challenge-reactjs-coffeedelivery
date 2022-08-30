@@ -4,6 +4,7 @@ import {
   ShoppingCart,
   Timer,
 } from "phosphor-react";
+import { useEffect, useState } from "react";
 import CoffeeImage from "../../assets/coffeeimage.svg";
 import { Coffee } from "./components/Coffee";
 import {
@@ -15,7 +16,27 @@ import {
   ImageContainer,
 } from "./styles";
 
+interface CoffeeRequestProps {
+  id: string;
+  title: string;
+  description: string;
+  tags: string[];
+  price: number;
+}
+
 export function Home() {
+  const [coffees, setCoffees] = useState([] as CoffeeRequestProps[]);
+
+  async function fetchCoffeeData() {
+    const response = await fetch("http://localhost:3000/coffee");
+    const data = await response.json();
+    setCoffees(data);
+  }
+
+  useEffect(() => {
+    fetchCoffeeData();
+  }, []);
+
   return (
     <>
       <HomeContainer>
@@ -54,7 +75,15 @@ export function Home() {
         </ImageContainer>
       </HomeContainer>
       <CoffeeListContainer>
-        <Coffee />
+        {coffees.map(({ id, description, price, tags, title }) => (
+          <Coffee
+            key={id}
+            description={description}
+            price={price}
+            tags={tags}
+            title={title}
+          />
+        ))}
       </CoffeeListContainer>
     </>
   );

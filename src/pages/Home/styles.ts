@@ -63,4 +63,10 @@ export const ImageContainer = styled.div`
   }
 `;
 
-export const CoffeeListContainer = styled.div``;
+export const CoffeeListContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 4fr));
+  gap: 1rem;
+
+  font-size: 0.825rem;
+`;
