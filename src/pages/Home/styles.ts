@@ -62,3 +62,5 @@ export const ImageContainer = styled.div`
     width: 18rem;
   }
 `;
+
+export const CoffeeListContainer = styled.div``;
