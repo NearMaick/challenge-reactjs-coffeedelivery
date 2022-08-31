@@ -9,6 +9,7 @@ import {
   CheckoutFormContainer,
   CheckoutFormHeaderContainer,
   Form,
+  PaymentTypeContainer,
 } from "./styles";
 
 export function CheckoutForm() {
@@ -45,7 +46,7 @@ export function CheckoutForm() {
             O pagamento é feito na entrega. Escolha a forma que deseja pagar
           </p>
         </div>
-        <div>
+        <PaymentTypeContainer>
           <span>
             <CreditCard /> cartão de crédito
           </span>
@@ -57,7 +58,7 @@ export function CheckoutForm() {
           <span>
             <Money /> dinheiro
           </span>
-        </div>
+        </PaymentTypeContainer>
       </div>
     </CheckoutFormContainer>
   );
