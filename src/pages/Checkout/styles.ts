@@ -3,9 +3,8 @@ import styled from "styled-components";
 export const CheckoutContainer = styled.div`
   width: 100%;
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 
-  padding: 2rem;
+  gap: 4rem;
 `;

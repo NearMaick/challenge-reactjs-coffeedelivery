@@ -1,3 +1,11 @@
+import { CheckoutItem } from "./CheckoutItem";
+
 export function CheckoutCart() {
-  return <h1>CheckoutCart</h1>;
+  return (
+    <div>
+      <h3>Cafés selecionados</h3>
+      <CheckoutItem />
+      <CheckoutItem />
+    </div>
+  );
 }
