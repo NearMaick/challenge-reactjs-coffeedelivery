@@ -2,10 +2,30 @@ import styled from "styled-components";
 
 export const CheckoutFormContainer = styled.div``;
 
-export const CheckoutFormHeaderContainer = styled.header``;
+export const CheckoutFormHeaderContainer = styled.header`
+  margin: 1.25rem;
+
+  display: flex;
+
+  line-height: 1.5rem;
+
+  svg {
+    width: 2rem;
+    height: 2rem;
+
+    padding: 0 0.5rem 0.5rem 0;
+
+    color: ${(props) => props.theme["yellow-500"]};
+  }
+
+  span {
+    font-weight: 600;
+  }
+`;
 
 export const Form = styled.form`
   input {
+    width: 28rem;
     border: 1px solid ${(props) => props.theme["gray-400"]};
     border-radius: 8px;
     margin: 1rem;
@@ -16,6 +36,67 @@ export const Form = styled.form`
     display: flex;
     flex-direction: column;
   }
+
+  div + div {
+    flex-direction: row;
+
+    input {
+      margin: 1rem 0 1rem 1rem;
+      width: 10rem;
+    }
+
+    input:nth-child(3) {
+      width: 6rem;
+    }
+  }
 `;
 
-export const PaymentTypeContainer = styled.div``;
+export const PaymentTypeContainer = styled.div`
+  margin: 1.25rem;
+
+  display: flex;
+
+  line-height: 1.5rem;
+
+  svg {
+    width: 2rem;
+    height: 2rem;
+
+    padding: 0 0.5rem 0.5rem 0;
+
+    color: ${(props) => props.theme["purple-500"]};
+  }
+
+  span {
+    font-weight: 600;
+  }
+`;
+
+export const PaymentTypeContent = styled.div`
+  text-transform: uppercase;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  span {
+    background: ${(props) => props.theme["purple-100"]};
+    display: flex;
+    align-items: center;
+
+    font-size: 0.825rem;
+
+    padding: 1rem;
+  }
+
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+
+    padding: 0.25rem;
+
+    margin-right: 0.25rem;
+
+    color: ${(props) => props.theme["purple-500"]};
+  }
+`;
