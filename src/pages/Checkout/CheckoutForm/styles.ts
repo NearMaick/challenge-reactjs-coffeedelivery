@@ -6,12 +6,15 @@ export const CheckoutFormHeaderContainer = styled.header`
   margin: 1.25rem;
 
   display: flex;
+  align-items: center;
 
   line-height: 1.5rem;
 
   svg {
     width: 2rem;
     height: 2rem;
+
+    margin-bottom: 1rem;
 
     padding: 0 0.5rem 0.5rem 0;
 
@@ -52,15 +55,15 @@ export const Form = styled.form`
 `;
 
 export const PaymentTypeContainer = styled.div`
-  margin: 1.25rem;
-
   display: flex;
+  align-items: center;
 
   line-height: 1.5rem;
 
   svg {
     width: 2rem;
     height: 2rem;
+    margin-bottom: 2.5rem;
 
     padding: 0 0.5rem 0.5rem 0;
 
@@ -80,13 +83,13 @@ export const PaymentTypeContent = styled.div`
   justify-content: space-between;
 
   span {
-    background: ${(props) => props.theme["purple-100"]};
+    background: ${(props) => props.theme["yellow-100"]};
     display: flex;
     align-items: center;
 
     font-size: 0.825rem;
 
-    padding: 1rem;
+    padding: 1rem 0.125rem;
   }
 
   svg {
