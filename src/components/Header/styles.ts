@@ -37,6 +37,7 @@ export const MapContentContainer = styled.div`
 `;
 
 export const CartButton = styled.button`
+  position: relative;
   border: none;
   background-color: ${(props) => props.theme["yellow-100"]};
   padding: 0.5rem;
@@ -45,5 +46,19 @@ export const CartButton = styled.button`
 
   svg {
     color: ${(props) => props.theme["yellow-600"]};
+  }
+
+  p {
+    position: fixed;
+    top: 0;
+
+    margin-top: 10px;
+    margin-left: 30px;
+
+    background: ${(props) => props.theme["yellow-600"]};
+    color: ${(props) => props.theme.white};
+
+    padding: 4px 8px;
+    border-radius: 9999px;
   }
 `;

@@ -21,6 +21,7 @@ export function Header() {
         </MapContentContainer>
         <CartButton>
           <ShoppingCart size={32} weight='fill' />
+          <p>3</p>
         </CartButton>
       </ShoppingCartContainer>
     </HeaderContainer>
