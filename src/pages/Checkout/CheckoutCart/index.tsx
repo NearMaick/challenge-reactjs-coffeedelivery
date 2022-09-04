@@ -6,7 +6,6 @@ export function CheckoutCart() {
     <CheckoutCartContainer>
       <h3>Cafés selecionados</h3>
       <CheckoutItem />
-      <CheckoutItem />
     </CheckoutCartContainer>
   );
 }

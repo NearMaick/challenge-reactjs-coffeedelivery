@@ -41,4 +41,8 @@ export const ItemCounterContent = styled.div`
       font-size: 0.825rem;
     }
   }
+
+  svg {
+    cursor: pointer;
+  }
 `;
