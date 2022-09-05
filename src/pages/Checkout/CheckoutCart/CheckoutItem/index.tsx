@@ -1,14 +1,30 @@
 import { Minus, Plus, Trash } from "phosphor-react";
 import { useState } from "react";
-import CoffeeImage from "../../../../assets/pageassets/american.svg";
 import {
   ItemContainer,
   ItemCounterContainer,
   ItemCounterContent,
 } from "./styles";
 
-export function CheckoutItem() {
+interface CheckoutItemProps {
+  title: string;
+  description: string;
+  price: number;
+  imageUrl: string;
+}
+
+export function CheckoutItem({
+  title,
+  description,
+  imageUrl,
+  price,
+}: CheckoutItemProps) {
   const [cartCounter, setCartCounter] = useState(0);
+
+  const priceFormatted = new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  }).format(price / 100);
 
   function handleAddQuantityToItem() {
     setCartCounter((state) => state + 1);
@@ -20,9 +36,9 @@ export function CheckoutItem() {
 
   return (
     <ItemContainer>
-      <img src={CoffeeImage} alt='' />
+      <img src={imageUrl} alt='' />
       <ItemCounterContainer>
-        <div>Expresso Tradicional</div>
+        <div>{title}</div>
         <ItemCounterContent>
           <div>
             <Minus onClick={handleRemoveQuantityToItem} />
@@ -36,7 +52,7 @@ export function CheckoutItem() {
         </ItemCounterContent>
       </ItemCounterContainer>
       <div>
-        <span>990</span>
+        <span>{priceFormatted}</span>
       </div>
     </ItemContainer>
   );

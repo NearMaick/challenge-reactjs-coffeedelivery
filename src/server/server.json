@@ -5,56 +5,64 @@
       "tags": ["tradicional"],
       "title": "Expresso Tradicional",
       "description": "O tradicional café feito com água quente e grãos moídos",
-      "price": 990
+      "price": 990,
+      "imageUrl": "/assets/expresso.svg"
     },
     {
       "id": "08c71152-c552-42e7-b094-f510ff44e9cb",
       "tags": ["tradicional", "expresso"],
       "title": "Expresso Americano",
       "description": "Expresso diluído, menos intenso que o tradicional",
-      "price": 1090
+      "price": 1090,
+      "imageUrl": "/assets/american.svg"
     },
     {
       "id": "c558a80a-f319-4c10-95d4-4282ef745b4b",
       "tags": ["expresso"],
       "title": "Expresso Cremoso",
       "description": "Café expresso tradicional com espuma cremosa",
-      "price": 1290
+      "price": 1290,
+      "imageUrl": "/assets/withmilk.svg"
     },
     {
       "id": "1ad1fccc-d279-46a0-8980-1d91afd6ba67",
       "tags": ["tradicional", "expresso"],
       "title": "Expresso Gelado",
       "description": "Bebida preparada com cubos de gelo",
-      "price": 790
+      "price": 790,
+      "imageUrl": "/assets/latte.svg"
     },
     {
       "id": "5108babc-bf35-44d5-a9ba-de08badfa80a",
       "tags": ["expresso", "leite"],
       "title": "Café com Leite",
       "description": "Meio a meio espreso com leite vaporizado",
-      "price": 890
+      "price": 890,
+      "imageUrl": "/assets/withmilk.svg"
     },
     {
       "id": "2d790a4d-7c9c-4e23-9c9c-5749c5fa7fdb",
       "tags": ["expresso", "leite"],
       "title": "Latte",
       "description": "Meio a meio espreso com leite vaporizado",
-      "price": 890
+      "price": 890,
+      "imageUrl": "/assets/latte.svg"
     },
     {
       "id": "8304e5ff-6324-4863-ac51-8fcbc6812b13",
       "tags": ["expresso", "chocolate"],
       "title": "Capuccino",
       "description": "Meio a meio espreso com leite vaporizado",
-      "price": 890
+      "price": 890,
+      "imageUrl": "/assets/mocaccino.svg"
     },
     {
       "id": "fd4a096f-93f5-4f2a-86c6-69a2d20365ff",
       "tags": ["chocolate"],
       "title": "Chocolate quente",
       "description": "Meio a meio espreso com leite vaporizado",
-      "price": 890
+      "price": 890,
+      "imageUrl": "/assets/chocolate.svg"
     }
   ]
 }

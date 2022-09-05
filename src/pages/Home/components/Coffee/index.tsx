@@ -1,6 +1,5 @@
 import { Minus, Plus, ShoppingCart } from "phosphor-react";
 import { useContext, useState } from "react";
-import CoffeeImage from "../../../../assets/pageassets/american.svg";
 import { CartContext } from "../../../../contexts/CoffeeOrderContext";
 import {
   CoffeeCartContainer,
@@ -14,6 +13,7 @@ interface CoffeeProps {
   description: string;
   tags: string[];
   price: number;
+  imageUrl: string;
 }
 
 export function Coffee({
@@ -22,6 +22,7 @@ export function Coffee({
   description,
   tags,
   price,
+  imageUrl,
 }: CoffeeProps) {
   const priceFormatted = new Intl.NumberFormat("pt-BR", {
     style: "currency",
@@ -51,7 +52,7 @@ export function Coffee({
 
   return (
     <CoffeeContainer>
-      <img src={CoffeeImage} alt='' />
+      <img src={imageUrl} alt='' />
       <CoffeeTagsContainer>
         {tags.map((tag) => (
           <span key={tag}>{tag} </span>

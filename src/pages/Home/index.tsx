@@ -23,6 +23,7 @@ interface CoffeeRequestProps {
   description: string;
   tags: string[];
   price: number;
+  imageUrl: string;
 }
 
 export function Home() {
@@ -66,16 +67,19 @@ export function Home() {
         </ImageContainer>
       </HomeContainer>
       <CoffeeListContainer>
-        {coffeeListData.map(({ id, description, price, tags, title }) => (
-          <Coffee
-            key={id}
-            productId={id}
-            description={description}
-            price={price}
-            tags={tags}
-            title={title}
-          />
-        ))}
+        {coffeeListData.map(
+          ({ id, description, price, tags, title, imageUrl }) => (
+            <Coffee
+              key={id}
+              productId={id}
+              description={description}
+              price={price}
+              tags={tags}
+              title={title}
+              imageUrl={imageUrl}
+            />
+          )
+        )}
       </CoffeeListContainer>
     </>
   );

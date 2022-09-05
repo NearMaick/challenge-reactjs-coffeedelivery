@@ -8,11 +8,18 @@ export function CheckoutCart() {
 
   return (
     <CheckoutCartContainer>
-      {coffeeListOrder.map((coffee) => (
-        <pre key={coffee.id}>{JSON.stringify(coffee)}</pre>
-      ))}
       <h3>Cafés selecionados</h3>
-      <CheckoutItem />
+      {coffeeListOrder.map(({ id, description, imageUrl, price, title }) => (
+        <>
+          <CheckoutItem
+            key={id}
+            description={description}
+            imageUrl={imageUrl}
+            price={price}
+            title={title}
+          />
+        </>
+      ))}
     </CheckoutCartContainer>
   );
 }
