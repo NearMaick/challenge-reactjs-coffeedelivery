@@ -9,16 +9,13 @@ export function CheckoutCart() {
   return (
     <CheckoutCartContainer>
       <h3>Cafés selecionados</h3>
-      {coffeeListOrder.map(({ id, description, imageUrl, price, title }) => (
-        <>
-          <CheckoutItem
-            key={id}
-            description={description}
-            imageUrl={imageUrl}
-            price={price}
-            title={title}
-          />
-        </>
+      {coffeeListOrder.map(({ id, imageUrl, price, title }) => (
+        <CheckoutItem
+          key={id}
+          imageUrl={imageUrl}
+          price={price}
+          title={title}
+        />
       ))}
     </CheckoutCartContainer>
   );

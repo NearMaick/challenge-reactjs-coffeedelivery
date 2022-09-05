@@ -1,6 +1,5 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { v4 as uuidV4 } from "uuid";
 export interface Coffee {
   id: string;
   title: string;
@@ -11,6 +10,7 @@ export interface Coffee {
 }
 
 interface CoffeeOrderProps {
+  quantity: number;
   coffeeListOrder: Coffee[];
   coffeeListData: Coffee[];
   setContextCoffeeList: (coffee: Coffee[]) => void;
@@ -26,6 +26,7 @@ export const CartContext = createContext({} as CoffeeOrderProps);
 export function CoffeeOrderContextProvider({ children }: CartContextProps) {
   const [coffeeListOrder, setCoffeeListOrder] = useState<Coffee[]>([]);
   const [coffeeListData, setCoffeeListData] = useState<Coffee[]>([]);
+  const [quantity, setQuantity] = useState(0);
 
   const navigate = useNavigate();
 
@@ -58,7 +59,7 @@ export function CoffeeOrderContextProvider({ children }: CartContextProps) {
             setCoffeeListOrder((state) => [
               ...state,
               {
-                id: uuidV4(),
+                id,
                 description,
                 imageUrl,
                 title,
@@ -66,6 +67,9 @@ export function CoffeeOrderContextProvider({ children }: CartContextProps) {
                 tags,
               },
             ]);
+          } else {
+            // adicionar + 1 ao carrinho
+            return;
           }
         }
       );
@@ -81,6 +85,7 @@ export function CoffeeOrderContextProvider({ children }: CartContextProps) {
         setContextCoffeeList,
         coffeeListData,
         purchaseItem,
+        quantity,
       }}>
       {children}
     </CartContext.Provider>

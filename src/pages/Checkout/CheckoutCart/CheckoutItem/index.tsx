@@ -8,17 +8,11 @@ import {
 
 interface CheckoutItemProps {
   title: string;
-  description: string;
   price: number;
   imageUrl: string;
 }
 
-export function CheckoutItem({
-  title,
-  description,
-  imageUrl,
-  price,
-}: CheckoutItemProps) {
+export function CheckoutItem({ title, imageUrl, price }: CheckoutItemProps) {
   const [cartCounter, setCartCounter] = useState(0);
 
   const priceFormatted = new Intl.NumberFormat("pt-BR", {
