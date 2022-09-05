@@ -1,5 +1,6 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
-
+import { useNavigate } from "react-router-dom";
+import { v4 as uuidV4 } from "uuid";
 export interface Coffee {
   id: string;
   title: string;
@@ -13,6 +14,7 @@ interface CoffeeOrderProps {
   coffeeListOrder: Coffee[];
   coffeeListData: Coffee[];
   setContextCoffeeList: (coffee: Coffee[]) => void;
+  purchaseItem: (id: string, quantity: number) => void;
 }
 
 interface CartContextProps {
@@ -24,6 +26,8 @@ export const CartContext = createContext({} as CoffeeOrderProps);
 export function CoffeeOrderContextProvider({ children }: CartContextProps) {
   const [coffeeListOrder, setCoffeeListOrder] = useState<Coffee[]>([]);
   const [coffeeListData, setCoffeeListData] = useState<Coffee[]>([]);
+
+  const navigate = useNavigate();
 
   function setContextCoffeeList(coffee: Coffee[]) {
     setCoffeeListOrder(coffee);
@@ -39,9 +43,45 @@ export function CoffeeOrderContextProvider({ children }: CartContextProps) {
     fetchCoffeeData();
   }, []);
 
+  async function purchaseItem(productId: string, quantity: number) {
+    // const response = await fetch(`http://localhost:3000/coffee/${productId}`);
+    // const data = await response.json();
+
+    const itemAlreadyInCart = coffeeListOrder.find(
+      (item) => item.id === productId
+    );
+
+    if (!itemAlreadyInCart) {
+      coffeeListData.map(
+        ({ id, description, imageUrl, price, title, tags }) => {
+          if (productId === id) {
+            setCoffeeListOrder((state) => [
+              ...state,
+              {
+                id: uuidV4(),
+                description,
+                imageUrl,
+                title,
+                price,
+                tags,
+              },
+            ]);
+          }
+        }
+      );
+    }
+
+    navigate("/checkout");
+  }
+
   return (
     <CartContext.Provider
-      value={{ coffeeListOrder, setContextCoffeeList, coffeeListData }}>
+      value={{
+        coffeeListOrder,
+        setContextCoffeeList,
+        coffeeListData,
+        purchaseItem,
+      }}>
       {children}
     </CartContext.Provider>
   );

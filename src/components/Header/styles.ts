@@ -14,7 +14,9 @@ export const HeaderContainer = styled.div`
   background: ${(props) => props.theme["gray-300"]};
 `;
 
-export const LogoContainer = styled.div``;
+export const LogoContainer = styled.div`
+  cursor: pointer;
+`;
 
 export const ShoppingCartContainer = styled.div`
   display: flex;

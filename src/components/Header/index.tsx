@@ -1,4 +1,5 @@
 import { MapPin, ShoppingCart } from "phosphor-react";
+import { useNavigate } from "react-router-dom";
 import CoffeeLogo from "../../assets/coffeelogo.svg";
 import {
   CartButton,
@@ -9,9 +10,11 @@ import {
 } from "./styles";
 
 export function Header() {
+  const navigate = useNavigate();
+
   return (
     <HeaderContainer>
-      <LogoContainer>
+      <LogoContainer onClick={() => navigate("/")}>
         <img src={CoffeeLogo} alt='' />
       </LogoContainer>
       <ShoppingCartContainer>

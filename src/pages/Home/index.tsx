@@ -69,6 +69,7 @@ export function Home() {
         {coffeeListData.map(({ id, description, price, tags, title }) => (
           <Coffee
             key={id}
+            productId={id}
             description={description}
             price={price}
             tags={tags}
