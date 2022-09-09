@@ -41,37 +41,50 @@ export function CoffeeOrderContextProvider({ children }: CartContextProps) {
     );
 
     if (!storedItemsCartAsString) {
-      // buscar o item correspondente na lista
       const { id, imageUrl, title, price } = coffeeListData.find(
         (item) => item.id === productId
       ) as Coffee;
 
       const itemCart = { id, imageUrl, title, price, quantity };
-
       const updatedItemsCart = [itemCart];
-      // armazenar no localStorage
       const cartStateJSON = JSON.stringify(updatedItemsCart);
+
       localStorage.setItem("@coffee-delivery:cart-state-1.0.0", cartStateJSON);
     } else {
       const storedItemsCartAsJSON = JSON.parse(storedItemsCartAsString);
 
-      // buscar o item correspondente na lista
-      const { id, imageUrl, title, price } = coffeeListData.find(
-        (item) => item.id === productId
-      ) as Coffee;
-
-      const itemCart = { id, imageUrl, title, price, quantity };
-
-      const updatedItemsCart = [...storedItemsCartAsJSON, itemCart];
-      const updatedItemsCartToString = JSON.stringify(updatedItemsCart);
-
-      localStorage.setItem(
-        "@coffee-delivery:cart-state-1.0.0",
-        updatedItemsCartToString
+      const itemOnCart = storedItemsCartAsJSON.find(
+        (item: { id: string }) => item.id === productId
       );
 
-      // // inserir o dado novo no array de cart recuperado do storage
-      // const storedCartUpdated =
+      if (itemOnCart) {
+        const storedItemsUpdated = storedItemsCartAsJSON.map((item: any) => {
+          if (item.id === productId) {
+            return { ...item, quantity };
+          } else {
+            return item;
+          }
+        });
+
+        const updatedItemsCartToString = JSON.stringify(storedItemsUpdated);
+        localStorage.setItem(
+          "@coffee-delivery:cart-state-1.0.0",
+          updatedItemsCartToString
+        );
+      } else {
+        const { id, imageUrl, title, price } = coffeeListData.find(
+          (item) => item.id === productId
+        ) as Coffee;
+
+        const itemCart = { id, imageUrl, title, price, quantity };
+        const updatedItemsCart = [...storedItemsCartAsJSON, itemCart];
+        const updatedItemsCartToString = JSON.stringify(updatedItemsCart);
+
+        localStorage.setItem(
+          "@coffee-delivery:cart-state-1.0.0",
+          updatedItemsCartToString
+        );
+      }
     }
 
     // navigate("/checkout");
