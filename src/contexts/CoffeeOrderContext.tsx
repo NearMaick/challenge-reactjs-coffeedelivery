@@ -10,10 +10,7 @@ export interface Coffee {
 }
 
 interface CoffeeOrderProps {
-  quantity: number;
-  coffeeListOrder: Coffee[];
   coffeeListData: Coffee[];
-  setContextCoffeeList: (coffee: Coffee[]) => void;
   purchaseItem: (id: string, quantity: number) => void;
 }
 
@@ -24,15 +21,9 @@ interface CartContextProps {
 export const CartContext = createContext({} as CoffeeOrderProps);
 
 export function CoffeeOrderContextProvider({ children }: CartContextProps) {
-  const [coffeeListOrder, setCoffeeListOrder] = useState<Coffee[]>([]);
   const [coffeeListData, setCoffeeListData] = useState<Coffee[]>([]);
-  const [quantity, setQuantity] = useState(0);
 
   const navigate = useNavigate();
-
-  function setContextCoffeeList(coffee: Coffee[]) {
-    setCoffeeListOrder(coffee);
-  }
 
   async function fetchCoffeeData() {
     const response = await fetch("http://localhost:3000/coffee");
@@ -45,47 +36,52 @@ export function CoffeeOrderContextProvider({ children }: CartContextProps) {
   }, []);
 
   async function purchaseItem(productId: string, quantity: number) {
-    // const response = await fetch(`http://localhost:3000/coffee/${productId}`);
-    // const data = await response.json();
-
-    const itemAlreadyInCart = coffeeListOrder.find(
-      (item) => item.id === productId
+    const storedItemsCartAsString = localStorage.getItem(
+      "@coffee-delivery:cart-state-1.0.0"
     );
 
-    if (!itemAlreadyInCart) {
-      coffeeListData.map(
-        ({ id, description, imageUrl, price, title, tags }) => {
-          if (productId === id) {
-            setCoffeeListOrder((state) => [
-              ...state,
-              {
-                id,
-                description,
-                imageUrl,
-                title,
-                price,
-                tags,
-              },
-            ]);
-          } else {
-            // adicionar + 1 ao carrinho
-            return;
-          }
-        }
+    if (!storedItemsCartAsString) {
+      // buscar o item correspondente na lista
+      const { id, imageUrl, title, price } = coffeeListData.find(
+        (item) => item.id === productId
+      ) as Coffee;
+
+      const itemCart = { id, imageUrl, title, price, quantity };
+
+      const updatedItemsCart = [itemCart];
+      // armazenar no localStorage
+      const cartStateJSON = JSON.stringify(updatedItemsCart);
+      localStorage.setItem("@coffee-delivery:cart-state-1.0.0", cartStateJSON);
+    } else {
+      const storedItemsCartAsJSON = JSON.parse(storedItemsCartAsString);
+
+      // buscar o item correspondente na lista
+      const { id, imageUrl, title, price } = coffeeListData.find(
+        (item) => item.id === productId
+      ) as Coffee;
+
+      const itemCart = { id, imageUrl, title, price, quantity };
+
+      const updatedItemsCart = [...storedItemsCartAsJSON, itemCart];
+      const updatedItemsCartToString = JSON.stringify(updatedItemsCart);
+
+      localStorage.setItem(
+        "@coffee-delivery:cart-state-1.0.0",
+        updatedItemsCartToString
       );
+
+      // // inserir o dado novo no array de cart recuperado do storage
+      // const storedCartUpdated =
     }
 
-    navigate("/checkout");
+    // navigate("/checkout");
   }
 
   return (
     <CartContext.Provider
       value={{
-        coffeeListOrder,
-        setContextCoffeeList,
         coffeeListData,
         purchaseItem,
-        quantity,
       }}>
       {children}
     </CartContext.Provider>
