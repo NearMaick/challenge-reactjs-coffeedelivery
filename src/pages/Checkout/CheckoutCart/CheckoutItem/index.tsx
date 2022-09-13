@@ -10,10 +10,16 @@ interface CheckoutItemProps {
   title: string;
   price: number;
   imageUrl: string;
+  quantity: number;
 }
 
-export function CheckoutItem({ title, imageUrl, price }: CheckoutItemProps) {
-  const [cartCounter, setCartCounter] = useState(0);
+export function CheckoutItem({
+  title,
+  imageUrl,
+  price,
+  quantity,
+}: CheckoutItemProps) {
+  const [cartCounter, setCartCounter] = useState(quantity);
 
   const priceFormatted = new Intl.NumberFormat("pt-BR", {
     style: "currency",

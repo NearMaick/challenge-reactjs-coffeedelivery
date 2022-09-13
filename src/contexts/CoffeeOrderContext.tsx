@@ -87,7 +87,7 @@ export function CoffeeOrderContextProvider({ children }: CartContextProps) {
       }
     }
 
-    // navigate("/checkout");
+    navigate("/checkout");
   }
 
   return (
