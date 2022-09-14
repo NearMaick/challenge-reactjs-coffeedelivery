@@ -15,7 +15,6 @@ export function Header() {
   const { fetchCart } = useContext(CartContext);
 
   const items = fetchCart()?.length;
-  console.log(items);
 
   const navigate = useNavigate();
 

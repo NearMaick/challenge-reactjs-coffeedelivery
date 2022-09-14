@@ -1,14 +1,12 @@
+import { useContext } from "react";
+import { CartContext } from "../../contexts/CoffeeOrderContext";
 import { CheckoutCart } from "./CheckoutCart";
 import { CheckoutForm } from "./CheckoutForm";
 import { CheckoutContainer, SummaryContainer } from "./styles";
 
-interface CoffeeProps {
-  id: string;
-  price: number;
-  quantity: number;
-}
-
 export function Checkout() {
+  const { fetchCart } = useContext(CartContext);
+
   return (
     <CheckoutContainer>
       <CheckoutForm />

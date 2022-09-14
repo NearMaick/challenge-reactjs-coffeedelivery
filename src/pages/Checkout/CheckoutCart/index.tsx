@@ -12,6 +12,7 @@ export function CheckoutCart() {
       {fetchCart()?.map(({ id, imageUrl, price, title, quantity = 0 }) => (
         <CheckoutItem
           key={id}
+          id={id}
           imageUrl={imageUrl}
           price={price}
           title={title}

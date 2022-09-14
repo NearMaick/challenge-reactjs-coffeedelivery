@@ -88,8 +88,6 @@ export function CoffeeOrderContextProvider({ children }: CartContextProps) {
         );
       }
     }
-
-    navigate("/checkout");
   }
 
   function fetchCart(): Coffee[] {
