@@ -1,5 +1,4 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 export interface Coffee {
   id: string;
   title: string;
@@ -24,8 +23,6 @@ export const CartContext = createContext({} as CoffeeOrderProps);
 
 export function CoffeeOrderContextProvider({ children }: CartContextProps) {
   const [coffeeListData, setCoffeeListData] = useState<Coffee[]>([]);
-
-  const navigate = useNavigate();
 
   async function fetchCoffeeData() {
     const response = await fetch("http://localhost:3000/coffee");
