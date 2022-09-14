@@ -7,11 +7,13 @@ export interface Coffee {
   description: string;
   price: number;
   imageUrl: string;
+  quantity?: number;
 }
 
 interface CoffeeOrderProps {
   coffeeListData: Coffee[];
   purchaseItem: (id: string, quantity: number) => void;
+  fetchCart: () => Coffee[] | null;
 }
 
 interface CartContextProps {
@@ -90,11 +92,18 @@ export function CoffeeOrderContextProvider({ children }: CartContextProps) {
     navigate("/checkout");
   }
 
+  function fetchCart(): Coffee[] {
+    const cartList = localStorage.getItem("@coffee-delivery:cart-state-1.0.0");
+
+    return cartList && JSON.parse(cartList);
+  }
+
   return (
     <CartContext.Provider
       value={{
         coffeeListData,
         purchaseItem,
+        fetchCart,
       }}>
       {children}
     </CartContext.Provider>

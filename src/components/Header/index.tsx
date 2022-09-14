@@ -1,6 +1,8 @@
 import { MapPin, ShoppingCart } from "phosphor-react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import CoffeeLogo from "../../assets/coffeelogo.svg";
+import { CartContext } from "../../contexts/CoffeeOrderContext";
 import {
   CartButton,
   HeaderContainer,
@@ -10,6 +12,11 @@ import {
 } from "./styles";
 
 export function Header() {
+  const { fetchCart } = useContext(CartContext);
+
+  const items = fetchCart()?.length;
+  console.log(items);
+
   const navigate = useNavigate();
 
   return (
@@ -24,7 +31,7 @@ export function Header() {
         </MapContentContainer>
         <CartButton onClick={() => navigate("/checkout")}>
           <ShoppingCart size={32} weight='fill' />
-          <p>3</p>
+          <p>{items ? items : 0}</p>
         </CartButton>
       </ShoppingCartContainer>
     </HeaderContainer>
