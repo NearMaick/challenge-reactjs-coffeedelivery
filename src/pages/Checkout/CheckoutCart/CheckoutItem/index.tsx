@@ -24,20 +24,22 @@ export function CheckoutItem({
 }: CheckoutItemProps) {
   const [cartCounter, setCartCounter] = useState(quantity);
   const { purchaseItem } = useContext(CartContext);
-
-  const priceFormatted = new Intl.NumberFormat("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-  }).format(price / 100);
+  const [subtotal, setSubtotal] = useState((quantity * price) / 100);
 
   function handleAddQuantityToItem(id: string) {
     setCartCounter((state) => state + 1);
-    purchaseItem(id, quantity + 1);
+    const quantityToCart = cartCounter + 1;
+    purchaseItem(id, quantityToCart);
+
+    setSubtotal((price * (cartCounter + 1)) / 100);
   }
 
   function handleRemoveQuantityToItem(id: string) {
     setCartCounter((state) => state - 1);
-    purchaseItem(id, quantity - 1);
+    const quantityToCart = cartCounter - 1;
+    purchaseItem(id, quantityToCart);
+
+    setSubtotal((price * (cartCounter - 1)) / 100);
   }
 
   return (
@@ -58,7 +60,12 @@ export function CheckoutItem({
         </ItemCounterContent>
       </ItemCounterContainer>
       <div>
-        <span>{priceFormatted}</span>
+        <span>
+          {Intl.NumberFormat("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+          }).format(subtotal)}
+        </span>
       </div>
     </ItemContainer>
   );
