@@ -5,7 +5,7 @@ import { CheckoutForm } from "./CheckoutForm";
 import { CheckoutContainer, SummaryContainer } from "./styles";
 
 export function Checkout() {
-  const { fetchCart, totalOrder } = useContext(CartContext);
+  const { totalOrder } = useContext(CartContext);
 
   const orderTotalFormatted = new Intl.NumberFormat("pt-BR", {
     style: "currency",

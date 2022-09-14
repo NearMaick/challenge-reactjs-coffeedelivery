@@ -5,6 +5,7 @@ import {
   MapPin,
   Money,
 } from "phosphor-react";
+import { useForm } from "react-hook-form";
 import {
   CheckoutFormContainer,
   CheckoutFormHeaderContainer,
@@ -14,6 +15,10 @@ import {
 } from "./styles";
 
 export function CheckoutForm() {
+  const { register, handleSubmit } = useForm();
+
+  function handleCreateNewOrder(data: any) {}
+
   return (
     <CheckoutFormContainer>
       <h2>Complete seu pedido</h2>
@@ -25,20 +30,32 @@ export function CheckoutForm() {
           <p>Informe o endereço onde deseja receber seu pedido:</p>
         </div>
       </CheckoutFormHeaderContainer>
-      <Form>
+      <Form onSubmit={handleSubmit(handleCreateNewOrder)}>
         <div>
-          <input type='number' placeholder='CEP' />
-          <input type='text' placeholder='Rua' />
+          <input
+            type='number'
+            placeholder='CEP'
+            {...register("zip-code", { valueAsNumber: true })}
+          />
+          <input type='text' placeholder='Rua' {...register("street")} />
         </div>
         <div>
-          <input type='number' placeholder='Número' />
-          <input type='text' placeholder='Complemento' />
-          <input type='text' placeholder='Opcional' />
+          <input
+            type='number'
+            placeholder='Número'
+            {...register("number", { valueAsNumber: true })}
+          />
+          <input
+            type='text'
+            placeholder='Complemento'
+            {...register("adjunct")}
+          />
+          <input type='text' placeholder='Opcional' {...register("adjunct")} />
         </div>
         <div>
-          <input type='text' placeholder='Bairro' />
-          <input type='text' placeholder='Cidade' />
-          <input type='text' placeholder='UF' />
+          <input type='text' placeholder='Bairro' {...register("district")} />
+          <input type='text' placeholder='Cidade' {...register("city")} />
+          <input type='text' placeholder='UF' {...register("state")} />
         </div>
       </Form>
 
