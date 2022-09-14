@@ -5,16 +5,12 @@ import { CheckoutForm } from "./CheckoutForm";
 import { CheckoutContainer, SummaryContainer } from "./styles";
 
 export function Checkout() {
-  const { fetchCart } = useContext(CartContext);
-
-  const orderTotal = fetchCart()?.reduce((acc, item) => {
-    return acc + item.price * item.quantity!;
-  }, 0);
+  const { fetchCart, totalOrder } = useContext(CartContext);
 
   const orderTotalFormatted = new Intl.NumberFormat("pt-BR", {
     style: "currency",
     currency: "BRL",
-  }).format(orderTotal! / 100);
+  }).format(totalOrder! / 100);
 
   const deliveryTax = 350;
   const deliveryTaxFormatted = new Intl.NumberFormat("pt-BR", {
@@ -25,7 +21,7 @@ export function Checkout() {
   const total = new Intl.NumberFormat("pt-BR", {
     style: "currency",
     currency: "BRL",
-  }).format((orderTotal! + deliveryTax) / 100);
+  }).format((totalOrder! + deliveryTax) / 100);
 
   return (
     <CheckoutContainer>

@@ -11,6 +11,7 @@ export interface Coffee {
 
 interface CoffeeOrderProps {
   coffeeListData: Coffee[];
+  totalOrder: number;
   purchaseItem: (id: string, quantity: number) => void;
   fetchCart: () => Coffee[] | null;
 }
@@ -23,6 +24,7 @@ export const CartContext = createContext({} as CoffeeOrderProps);
 
 export function CoffeeOrderContextProvider({ children }: CartContextProps) {
   const [coffeeListData, setCoffeeListData] = useState<Coffee[]>([]);
+  const [totalOrder, setTotalOrder] = useState(0);
 
   async function fetchCoffeeData() {
     const response = await fetch("http://localhost:3000/coffee");
@@ -85,6 +87,29 @@ export function CoffeeOrderContextProvider({ children }: CartContextProps) {
         );
       }
     }
+
+    calculateTotal();
+  }
+
+  function calculateTotal() {
+    const storedItemsCartAsString = localStorage.getItem(
+      "@coffee-delivery:cart-state-1.0.0"
+    );
+    const storedItemsCartAsJSON = JSON.parse(storedItemsCartAsString!);
+    const itemsToCalculate = storedItemsCartAsJSON.map(
+      ({ price, quantity }: Coffee) => {
+        return { price, quantity };
+      }
+    );
+
+    const totalCalculated = itemsToCalculate.reduce(
+      (acc: number, item: Coffee) => {
+        return acc + item.price * item.quantity!;
+      },
+      0
+    );
+
+    setTotalOrder(totalCalculated);
   }
 
   function fetchCart(): Coffee[] {
@@ -99,6 +124,7 @@ export function CoffeeOrderContextProvider({ children }: CartContextProps) {
         coffeeListData,
         purchaseItem,
         fetchCart,
+        totalOrder,
       }}>
       {children}
     </CartContext.Provider>
