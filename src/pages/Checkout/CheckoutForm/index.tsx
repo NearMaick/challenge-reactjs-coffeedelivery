@@ -14,7 +14,11 @@ import {
   PaymentTypeContent,
 } from "./styles";
 
-export function CheckoutForm() {
+interface CheckoutFormProps {
+  id: string;
+}
+
+export function CheckoutForm({ id }: CheckoutFormProps) {
   const { register, handleSubmit } = useForm();
 
   function handleCreateNewOrder(data: any) {
@@ -32,7 +36,7 @@ export function CheckoutForm() {
           <p>Informe o endereço onde deseja receber seu pedido:</p>
         </div>
       </CheckoutFormHeaderContainer>
-      <Form onSubmit={handleSubmit(handleCreateNewOrder)}>
+      <Form id={id} onSubmit={handleSubmit(handleCreateNewOrder)}>
         <div>
           <input
             type='number'
