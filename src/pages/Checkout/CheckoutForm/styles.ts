@@ -90,6 +90,8 @@ export const PaymentTypeContent = styled.div`
     font-size: 0.825rem;
 
     padding: 1rem 0.125rem;
+
+    cursor: pointer;
   }
 
   svg {

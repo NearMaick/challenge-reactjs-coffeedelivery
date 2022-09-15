@@ -42,7 +42,6 @@ export function Checkout() {
             <span>{total}</span>
           </div>
         </SummaryContainer>
-        <button>confirmar pedido</button>
       </div>
     </CheckoutContainer>
   );

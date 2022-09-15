@@ -17,7 +17,9 @@ import {
 export function CheckoutForm() {
   const { register, handleSubmit } = useForm();
 
-  function handleCreateNewOrder(data: any) {}
+  function handleCreateNewOrder(data: any) {
+    console.log(data);
+  }
 
   return (
     <CheckoutFormContainer>
@@ -57,28 +59,28 @@ export function CheckoutForm() {
           <input type='text' placeholder='Cidade' {...register("city")} />
           <input type='text' placeholder='UF' {...register("state")} />
         </div>
+        <PaymentTypeContainer>
+          <CurrencyDollarSimple />
+          <div>
+            <h4>Pagamento</h4>
+            <p>
+              O pagamento é feito na entrega. Escolha a forma que deseja pagar
+            </p>
+          </div>
+        </PaymentTypeContainer>
+        <PaymentTypeContent>
+          <span>
+            <CreditCard /> cartão de crédito
+          </span>
+          <span>
+            <Bank /> cartão de débito
+          </span>
+          <span>
+            <Money /> dinheiro
+          </span>
+        </PaymentTypeContent>
+        <button type='submit'>confirmar pedido</button>
       </Form>
-
-      <PaymentTypeContainer>
-        <CurrencyDollarSimple />
-        <div>
-          <span>Pagamento</span>
-          <p>
-            O pagamento é feito na entrega. Escolha a forma que deseja pagar
-          </p>
-        </div>
-      </PaymentTypeContainer>
-      <PaymentTypeContent>
-        <span>
-          <CreditCard /> cartão de crédito
-        </span>
-        <span>
-          <Bank /> cartão de débito
-        </span>
-        <span>
-          <Money /> dinheiro
-        </span>
-      </PaymentTypeContent>
     </CheckoutFormContainer>
   );
 }
