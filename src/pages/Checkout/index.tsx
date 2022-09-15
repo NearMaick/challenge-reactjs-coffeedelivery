@@ -1,6 +1,5 @@
 import { MapPin } from "phosphor-react";
 import { useContext } from "react";
-import { useForm } from "react-hook-form";
 import { CartContext } from "../../contexts/CoffeeOrderContext";
 import { CheckoutCart } from "./CheckoutCart";
 import { CheckoutForm } from "./CheckoutForm";
@@ -28,12 +27,6 @@ export function Checkout() {
     style: "currency",
     currency: "BRL",
   }).format((totalOrder! + deliveryTax) / 100);
-
-  const { register, handleSubmit } = useForm();
-
-  function handleCreateNewOrder(data: any) {
-    console.log(data);
-  }
 
   return (
     <CheckoutContainer>

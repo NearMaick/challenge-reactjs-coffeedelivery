@@ -83,7 +83,6 @@ export function CheckoutForm({ id }: CheckoutFormProps) {
             <Money /> dinheiro
           </span>
         </PaymentTypeContent>
-        <button type='submit'>confirmar pedido</button>
       </Form>
     </CheckoutFormContainer>
   );
